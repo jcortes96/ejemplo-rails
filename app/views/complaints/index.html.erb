@@ -1,0 +1,30 @@
+<h1>Libro de quejas</h1>
+
+<%- if notice.present? -%>
+  <div class="alert alert-success">
+    <%= notice -%>
+  </div>
+<%- end -%>
+
+<h2>Últimas publicaciones <small>(<%= @complaints.count -%>)</small></h2>
+
+<%- @complaints.each do |complaint| -%>
+  <div class="card bg-light my-2">
+    <div class="card-body">
+      <p><%= complaint -%></p>
+      <p><%= complaint.body -%></p>
+    </div>
+  </div>
+<%- end -%>
+
+<hr>
+
+<h2>Hacé tu publicación</h2>
+
+<%= simple_form_for @new_complaint do |f| -%>
+  <%= f.association :person -%>
+  <%= f.input :email -%>
+  <%= f.input :body, input_html: { rows: 5 } -%>
+
+  <%= f.submit 'Publicar', class: 'btn btn-success' -%>
+<%- end -%>
