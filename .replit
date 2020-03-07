@@ -1,0 +1,2 @@
+language = "json"
+run = "echo hola mundo"
